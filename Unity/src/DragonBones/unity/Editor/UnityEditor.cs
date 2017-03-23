@@ -81,6 +81,10 @@ namespace DragonBones
         {
             var folder = Directory.GetParent(filePath).ToString();
             var name = rawName != null ? rawName : filePath.Substring(0, filePath.LastIndexOf(".")).Substring(filePath.LastIndexOf("/") + 1);
+            if (name.EndsWith("_ske")) {  // DB5.0Editor exports file like name_ske.json, name_tex_0.json, name_tex_1.json ...
+                name = name.Substring(0, name.Length - 4);
+            }
+
             int index = 0;
             var textureAtlasName = "";
             var textureAtlasConfigFile = "";
